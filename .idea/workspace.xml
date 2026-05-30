@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb7f77d0-be49-4aec-9fcd-bba29a93f5d1" name="Changes" comment="" />
+    <list default="true" id="cb7f77d0-be49-4aec-9fcd-bba29a93f5d1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(auth)/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(auth)/sign-in/[[...sign-in]]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proxy.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,9 +48,77 @@
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="8" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Charlitokenn/rhema-erp.git",
+    "accountId": "3442c23a-e8d3-4c89-bc61-dd9d8d46d40b"
+  }
+}]]></component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.4481495196961955" />
+      <entry key="MS500" value="2.8903586516212965" />
+      <entry key="S2" value="5.128112722404019" />
+      <entry key="S5" value="7.173313013989866" />
+      <entry key="S10" value="10.923723599827492" />
+      <entry key="S30" value="22.097537090920245" />
+      <entry key="S60" value="28.527987069747955" />
+      <entry key="M2" value="32.82769161559503" />
+      <entry key="M5" value="36.90735765776924" />
+      <entry key="M10" value="41.2086404030658" />
+      <entry key="M15" value="44.37464423917601" />
+      <entry key="M30" value="52.64281150071544" />
+      <entry key="H1" value="70.87685112932643" />
+      <entry key="H2" value="97.50680495033876" />
+      <entry key="H4" value="121.9974478404749" />
+      <entry key="D1" value="152.43175111358343" />
+      <entry key="W1" value="158.88372603544911" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="9.813819318683535E-171" />
+      <entry key="S5" value="1.3809627314872705E-68" />
+      <entry key="S10" value="1.6342644869659625E-34" />
+      <entry key="S30" value="8.679531052291961E-12" />
+      <entry key="S60" value="4.34069929466225E-6" />
+      <entry key="M2" value="0.0033123150819695073" />
+      <entry key="M5" value="0.19289596731989034" />
+      <entry key="M10" value="0.8419886412708217" />
+      <entry key="M15" value="1.5584185534921575" />
+      <entry key="M30" value="3.616244618133335" />
+      <entry key="H1" value="6.416621850012904" />
+      <entry key="H2" value="8.978206024813709" />
+      <entry key="H4" value="10.757606563241719" />
+      <entry key="D1" value="12.588795304591894" />
+      <entry key="W1" value="12.940259738870374" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="1.1759836805256065" />
+      <entry key="MS500" value="2.737682314327014" />
+      <entry key="S2" value="5.039770871455321" />
+      <entry key="S5" value="7.1270218599361606" />
+      <entry key="S10" value="10.89300881139127" />
+      <entry key="S30" value="22.07870705178115" />
+      <entry key="S60" value="28.51588580189186" />
+      <entry key="M2" value="32.82395769335262" />
+      <entry key="M5" value="37.09511698871856" />
+      <entry key="M10" value="42.044231884049736" />
+      <entry key="M15" value="45.926128484977056" />
+      <entry key="M30" value="56.25124460170788" />
+      <entry key="H1" value="77.28479008729246" />
+      <entry key="H2" value="106.47729820438694" />
+      <entry key="H4" value="132.74967025351657" />
+      <entry key="D1" value="165.01933491656132" />
+      <entry key="W1" value="171.8238032181448" />
+    </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -50,13 +130,16 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "add-onesignal",
     "ignore.virus.scanning.warn.message": "true",
     "javascript.preferred.runtime.type.id": "node",
     "junie.onboarding.icon.badge.shown": "true",
@@ -66,7 +149,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2025.3.1.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Users\\user\\Desktop\\Dev\\rhema_erp\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -85,12 +168,15 @@
       <option name="presentableId" value="Default" />
       <updated>1780157735069</updated>
       <workItem from="1780157736364" duration="425000" />
-      <workItem from="1780158201488" duration="713000" />
+      <workItem from="1780158201488" duration="12662000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="next.config.ts" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
