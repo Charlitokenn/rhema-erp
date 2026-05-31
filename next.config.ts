@@ -1,14 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-export default nextConfig;
-
-module.exports = {
     async headers() {
         return [
+            {
+                source: '/oneSignal/OneSignalSDKWorker.js',
+                headers: [
+                    { key: 'Service-Worker-Allowed', value: '/' },
+                    { key: 'Content-Type', value: 'text/javascript' },
+                ],
+            },
             {
                 source: '/(.*)',
                 headers: [
@@ -43,6 +44,8 @@ module.exports = {
                     },
                 ],
             },
-        ]
+        ];
     },
-}
+};
+
+export default nextConfig;
