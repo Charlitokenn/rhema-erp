@@ -49,13 +49,10 @@ export function OneSignalProvider({ children }: { children: ReactNode }) {
             // push subscription to the authenticated user profile in OneSignal.
             OneSignal.login(user.id)
                 .then(() => {
-                    // Build tags — strip undefined / empty values (SDK requires Record<string, string>)
+                    // Build tags — only send non-identifying segmentation keys
                     const tags = Object.fromEntries(
                         Object.entries({
                             clerk_user_id: user.id,
-                            email: user.primaryEmailAddress?.emailAddress,
-                            first_name: user.firstName ?? undefined,
-                            last_name: user.lastName ?? undefined,
                             environment: process.env.NODE_ENV,
                         }).filter(
                             (entry): entry is [string, string] =>

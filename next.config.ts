@@ -4,21 +4,12 @@ const nextConfig: NextConfig = {
     async headers() {
         return [
             {
-                source: '/onesignal/OneSignalSDKWorker.js',
+                source: '/oneSignal/OneSignalSDKWorker.js',
                 headers: [
                     { key: 'Service-Worker-Allowed', value: '/' },
                     { key: 'Content-Type', value: 'text/javascript' },
                 ],
             },
-        ];
-    },
-};
-
-export default nextConfig;
-
-module.exports = {
-    async headers() {
-        return [
             {
                 source: '/(.*)',
                 headers: [
@@ -53,6 +44,8 @@ module.exports = {
                     },
                 ],
             },
-        ]
+        ];
     },
-}
+};
+
+export default nextConfig;

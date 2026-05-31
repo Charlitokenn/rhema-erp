@@ -66,17 +66,35 @@ export async function sendPushNotification(
         cache: 'no-store',
     });
 
-    const data: SendNotificationResponse = await res.json();
+    // Read raw response first
+    const rawText = await res.text();
 
     if (!res.ok) {
+        // Try to parse as JSON, fall back to raw text
+        let errorData: unknown;
+        try {
+            errorData = JSON.parse(rawText);
+        } catch {
+            errorData = rawText;
+        }
         throw new OneSignalError(
             `OneSignal API error ${res.status}`,
             res.status,
-            data,
+            errorData,
         );
     }
 
-    return data;
+    // Parse successful response
+    try {
+        const data: SendNotificationResponse = JSON.parse(rawText);
+        return data;
+    } catch (err) {
+        throw new OneSignalError(
+            'Failed to parse OneSignal response',
+            res.status,
+            rawText,
+        );
+    }
 }
 
 /**
@@ -97,17 +115,35 @@ export async function getNotificationStats(
         next: { revalidate: 30 },
     });
 
-    const data: NotificationStats = await res.json();
+    // Read raw response first
+    const rawText = await res.text();
 
     if (!res.ok) {
+        // Try to parse as JSON, fall back to raw text
+        let errorData: unknown;
+        try {
+            errorData = JSON.parse(rawText);
+        } catch {
+            errorData = rawText;
+        }
         throw new OneSignalError(
             `OneSignal stats error ${res.status}`,
             res.status,
-            data,
+            errorData,
         );
     }
 
-    return data;
+    // Parse successful response
+    try {
+        const data: NotificationStats = JSON.parse(rawText);
+        return data;
+    } catch (err) {
+        throw new OneSignalError(
+            'Failed to parse OneSignal stats response',
+            res.status,
+            rawText,
+        );
+    }
 }
 
 // ── Custom error class ────────────────────────────────────────────────────────

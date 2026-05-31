@@ -46,8 +46,12 @@ export function NotificationToggle({
         setFeedback(null);
 
         if (isOptedIn) {
-            await unsubscribe();
-            setFeedback({ kind: 'success', message: 'Push notifications disabled.' });
+            const result = await unsubscribe();
+            setFeedback(
+                result.success
+                    ? { kind: 'success', message: 'Push notifications disabled.' }
+                    : { kind: 'error', message: result.error ?? 'Something went wrong.' },
+            );
         } else {
             const result = await subscribe();
             setFeedback(

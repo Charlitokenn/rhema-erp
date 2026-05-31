@@ -29,6 +29,21 @@ async function requireAuth(): Promise<string> {
     return userId;
 }
 
+// ── Guard: require admin role ─────────────────────────────────────────────────
+
+async function requireAdmin(): Promise<string> {
+    const { userId, sessionClaims } = await auth();
+    if (!userId) {
+        throw new Error('Unauthorized');
+    }
+    // Check for admin role in public metadata
+    const role = sessionClaims?.metadata?.role || sessionClaims?.publicMetadata?.role;
+    if (role !== 'admin') {
+        throw new Error('Forbidden: Admin access required');
+    }
+    return userId;
+}
+
 // ── Action: send notification to a specific user by Clerk ID ─────────────────
 
 export async function sendNotificationToUser(
@@ -85,6 +100,11 @@ export async function sendNotificationToSelf(
         // Uses the Clerk userId of whoever is calling this action
         const userId = await requireAuth();
 
+        // Validate input
+        if (!heading?.trim() || !message?.trim()) {
+            return { success: false, error: 'Heading and message are required.' };
+        }
+
         const result = await sendPushNotification({
             heading,
             message,
@@ -113,7 +133,13 @@ export async function broadcastToSegment(
     },
 ): Promise<ActionResult<{ notificationId: string; recipients: number }>> {
     try {
-        await requireAuth();
+        // Require admin role for fan-out operations
+        await requireAdmin();
+
+        // Validate input
+        if (!heading?.trim() || !message?.trim()) {
+            return { success: false, error: 'Heading and message are required.' };
+        }
 
         const result = await sendPushNotification({
             heading,
@@ -130,7 +156,8 @@ export async function broadcastToSegment(
         if (err instanceof OneSignalError) {
             return { success: false, error: err.message, code: err.statusCode };
         }
-        return { success: false, error: 'Failed to broadcast notification.' };
+        const errorMessage = err instanceof Error ? err.message : 'Failed to broadcast notification.';
+        return { success: false, error: errorMessage };
     }
 }
 
@@ -143,7 +170,13 @@ export async function sendNotificationToUsers(
     options?: { url?: string; imageUrl?: string },
 ): Promise<ActionResult<{ notificationId: string; recipients: number }>> {
     try {
-        await requireAuth();
+        // Require admin role for bulk fan-out operations
+        await requireAdmin();
+
+        // Validate input
+        if (!heading?.trim() || !message?.trim()) {
+            return { success: false, error: 'Heading and message are required.' };
+        }
 
         if (!clerkUserIds.length) {
             return { success: false, error: 'No users specified.' };
@@ -168,7 +201,8 @@ export async function sendNotificationToUsers(
         if (err instanceof OneSignalError) {
             return { success: false, error: err.message, code: err.statusCode };
         }
-        return { success: false, error: 'Failed to send notifications.' };
+        const errorMessage = err instanceof Error ? err.message : 'Failed to send notifications.';
+        return { success: false, error: errorMessage };
     }
 }
 
@@ -196,6 +230,7 @@ export async function fetchNotificationStats(
 
 // ── Action: notify + revalidate a Next.js page/tag ───────────────────────────
 // Use this when a data mutation should both notify users AND invalidate cached UI.
+// Uses revalidateTag() for cache invalidation.
 
 export async function notifyAndRevalidate({
                                               clerkUserId,

@@ -12,7 +12,7 @@ export async function initOneSignal(): Promise<void> {
     await OneSignal.init({
         appId: process.env.NEXT_PUBLIC_ONESIGNAL_APP_ID!,
         // Service worker in a subdirectory; the header in next.config.ts lets it control all pages
-        serviceWorkerPath: 'onesignal/OneSignalSDKWorker.js',
+        serviceWorkerPath: 'oneSignal/OneSignalSDKWorker.js',
         serviceWorkerParam: { scope: '/' },
         // Auto-resubscribe users who cleared cache or migrated
         autoResubscribe: true,

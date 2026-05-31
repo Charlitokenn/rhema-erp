@@ -23,7 +23,7 @@ export interface UseOneSignalReturn {
     /** Request browser permission then opt into OneSignal */
     subscribe: () => Promise<{ success: boolean; error?: string }>;
     /** Opt out of OneSignal push (does not revoke browser permission) */
-    unsubscribe: () => Promise<void>;
+    unsubscribe: () => Promise<{ success: boolean; error?: string }>;
 }
 
 // These types aren't always exported from react-onesignal — define locally
@@ -43,9 +43,13 @@ export function useOneSignal(): UseOneSignalReturn {
     const syncState = useCallback(() => {
         try {
             setIsSupported(OneSignal.Notifications.isPushSupported());
-            setPermission(
-                ((OneSignal.Notifications.permission as PushPermission) ?? 'default'),
-            );
+            // OneSignal.Notifications.permission is a boolean, not a string
+            // Map: undefined -> 'default', true -> 'granted', false -> 'denied'
+            const permValue = OneSignal.Notifications.permission;
+            const mappedPerm: PushPermission =
+                permValue === undefined ? 'default' :
+                permValue === true ? 'granted' : 'denied';
+            setPermission(mappedPerm);
             setIsOptedIn(OneSignal.User.PushSubscription.optedIn ?? false);
             setSubscriptionId(OneSignal.User.PushSubscription.id ?? undefined);
         } catch {
@@ -122,7 +126,11 @@ export function useOneSignal(): UseOneSignalReturn {
                 await OneSignal.Notifications.requestPermission();
             }
 
-            const newPerm = (OneSignal.Notifications.permission ?? 'default') as PushPermission;
+            // Map the boolean permission to PushPermission string
+            const permValue = OneSignal.Notifications.permission;
+            const newPerm: PushPermission =
+                permValue === undefined ? 'default' :
+                permValue === true ? 'granted' : 'denied';
             setPermission(newPerm);
 
             if (newPerm !== 'granted') {
@@ -141,14 +149,21 @@ export function useOneSignal(): UseOneSignalReturn {
     }, [isInitialized, permission, syncState]);
 
     // ── Unsubscribe ──────────────────────────────────────────────────────────
-    const unsubscribe = useCallback(async (): Promise<void> => {
-        if (!isInitialized) return;
+    const unsubscribe = useCallback(async (): Promise<{
+        success: boolean;
+        error?: string;
+    }> => {
+        if (!isInitialized) {
+            return { success: false, error: 'Notifications not ready. Please try again.' };
+        }
         try {
             setIsLoading(true);
             await OneSignal.User.PushSubscription.optOut();
             syncState();
+            return { success: true };
         } catch (err) {
             console.error('[OneSignal] Unsubscribe error:', err);
+            return { success: false, error: 'Could not disable notifications. Please try again.' };
         } finally {
             setIsLoading(false);
         }
