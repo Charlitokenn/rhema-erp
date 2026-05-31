@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 import {ClerkProvider} from "@clerk/nextjs";
 import { shadcn } from '@clerk/ui/themes'
 import {AppConfig} from "@/lib/constants";
-import OneSignal from "react-onesignal";
 import {OneSignalProvider} from "@/components/providers/onesignal-provider";
+import React from "react";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -33,7 +33,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // @ts-ignore
   return (
     <html
       lang="en"

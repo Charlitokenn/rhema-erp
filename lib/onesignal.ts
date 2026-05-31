@@ -17,8 +17,25 @@ export async function initOneSignal(): Promise<void> {
         // Auto-resubscribe users who cleared cache or migrated
         autoResubscribe: true,
         // Disable the built-in bell and auto-prompts — we use our own toggle
-        notifyButton: { enable: false },
-        welcomeNotification: { disable: true },
+        notifyButton: { enable: false, prenotify: false, showCredit: false, text: {
+                "dialog.blocked.message": "",
+                "dialog.blocked.title": "",
+                "dialog.main.button.subscribe": "",
+                "dialog.main.button.unsubscribe": "",
+                "dialog.main.title": "",
+                "message.action.resubscribed": "",
+                "message.action.subscribed": "",
+                "message.action.subscribing": "",
+                "message.action.unsubscribed": "",
+                "message.prenotify": "",
+                "tip.state.blocked": "",
+                "tip.state.subscribed": "",
+                "tip.state.unsubscribed": ""
+            } },
+        welcomeNotification: {
+            disable: true,
+            message: ""
+        },
     });
 
     initialized = true;

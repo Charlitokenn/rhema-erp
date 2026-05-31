@@ -37,7 +37,7 @@ async function requireAdmin(): Promise<string> {
         throw new Error('Unauthorized');
     }
     // Check for admin role in public metadata
-    const role = sessionClaims?.metadata?.role || sessionClaims?.publicMetadata?.role;
+    const role = sessionClaims?.metadata?.role //|| sessionClaims?.publicMetadata?.role;
     if (role !== 'admin') {
         throw new Error('Forbidden: Admin access required');
     }
@@ -260,7 +260,7 @@ export async function notifyAndRevalidate({
         // Revalidate Next.js cache so the UI reflects the change immediately
         // updateTag() (Next.js 16) gives read-your-writes semantics within the same request
         if (revalidatePathValue) revalidatePath(revalidatePathValue);
-        if (revalidateTagValue) revalidateTag(revalidateTagValue);
+        if (revalidateTagValue) revalidateTag(revalidateTagValue,"");
 
         return { success: true, data: { notificationId: result.id } };
     } catch (err) {

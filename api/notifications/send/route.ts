@@ -10,7 +10,7 @@ const sendNotificationSchema = z.object({
     message: z.string().min(1, 'Message is required'),
     url: z.string().url().optional(),
     imageUrl: z.string().url().optional(),
-    data: z.record(z.string()).optional(),
+    data: z.record(z.string(), z.string()).optional(),
     target: z.discriminatedUnion('type', [
         z.object({
             type: z.literal('external_ids'),
