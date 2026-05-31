@@ -16,7 +16,7 @@ await fetch('/api/notifications/send', {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
         heading: 'New feature!',
-        message: 'Check out what's new.',
+        message: "Check out what's new.",
         target: { type: 'segments', names: ['Active Users'] },
     }),
 });

@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb7f77d0-be49-4aec-9fcd-bba29a93f5d1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api/notifications/[notificationId]/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/notifications/send/route.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/notifications-toggle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/providers/onesignal-provider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hooks/use-onesignal.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/actions/send-push.action.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/onesignal.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/utils.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/oneSignal/OneSignalSDKWorker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/types/onesignal.ts" afterDir="false" />
+    <list default="true" id="cb7f77d0-be49-4aec-9fcd-bba29a93f5d1" name="Changes" comment="added one signal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/actions/send-push.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/actions/send-push.action.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -52,17 +40,15 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="8" />
+    <option name="cachedIndexableFilesCount" value="41" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Charlitokenn&quot;
-  }
-}</component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {}
+}]]></component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Charlitokenn/rhema-erp.git&quot;,
@@ -75,61 +61,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.000000021889284" />
-      <entry key="S10" value="1.0001479503067727" />
-      <entry key="S30" value="1.0555187736408127" />
-      <entry key="S60" value="1.5256585954859077" />
-      <entry key="M2" value="4.707744312630416" />
-      <entry key="M5" value="17.30807974769866" />
-      <entry key="M10" value="36.256948875097365" />
-      <entry key="M15" value="52.605321196934334" />
-      <entry key="M30" value="86.492534325295" />
-      <entry key="H1" value="125.38762582208966" />
-      <entry key="H2" value="167.5550279787345" />
-      <entry key="H4" value="204.09604676659683" />
-      <entry key="D1" value="249.57075104047496" />
-      <entry key="W1" value="259.3104947302946" />
+      <entry key="MS100" value="1.0921423447344998" />
+      <entry key="MS500" value="1.7094546998274542" />
+      <entry key="S2" value="3.7322070317735165" />
+      <entry key="S5" value="5.907791854256669" />
+      <entry key="S10" value="7.200070003385011" />
+      <entry key="S30" value="8.63430357654607" />
+      <entry key="S60" value="11.238472469638207" />
+      <entry key="M2" value="17.280166074153733" />
+      <entry key="M5" value="26.56605200185588" />
+      <entry key="M10" value="31.56602234530167" />
+      <entry key="M15" value="33.532830871966866" />
+      <entry key="M30" value="35.67235508635385" />
+      <entry key="H1" value="36.84532365417844" />
+      <entry key="H2" value="40.151317334846645" />
+      <entry key="H4" value="64.060445610338" />
+      <entry key="D1" value="218.18049070157235" />
+      <entry key="W1" value="289.57904532147086" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="6.119752138041551E-259" />
-      <entry key="S5" value="7.584150526817523E-104" />
-      <entry key="S10" value="4.9401732881798966E-52" />
-      <entry key="S30" value="1.9447313666545724E-17" />
-      <entry key="S60" value="8.794603198764271E-9" />
-      <entry key="M2" value="1.8743128030062725E-4" />
-      <entry key="M5" value="0.07498845949835649" />
-      <entry key="M10" value="0.5991622662609977" />
-      <entry key="M15" value="1.309836139757974" />
-      <entry key="M30" value="3.509431386379347" />
-      <entry key="H1" value="6.934350699398346" />
-      <entry key="H2" value="10.533968216856517" />
-      <entry key="H4" value="13.27869783347561" />
-      <entry key="D1" value="16.296652058571418" />
-      <entry key="W1" value="16.897248014770074" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="3.852345191047224E-225" />
+      <entry key="M2" value="1.2404993604931326E-112" />
+      <entry key="M5" value="4.0114023176160996E-45" />
+      <entry key="M10" value="1.3857833829496636E-22" />
+      <entry key="M15" value="4.935345549310138E-15" />
+      <entry key="M30" value="2.1542051214052254E-7" />
+      <entry key="H1" value="0.0017180308225498697" />
+      <entry key="H2" value="0.16580765540197873" />
+      <entry key="H4" value="1.6659492817986383" />
+      <entry key="D1" value="11.530534541623153" />
+      <entry key="W1" value="16.082436399887875" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.25" />
-      <entry key="MS500" value="0.757858283255199" />
-      <entry key="S2" value="0.9330329915368074" />
-      <entry key="S5" value="0.9726549692288624" />
-      <entry key="S10" value="0.9863804088815302" />
-      <entry key="S30" value="1.0508758450211533" />
-      <entry key="S60" value="1.5230678965717654" />
-      <entry key="M2" value="4.705380694448727" />
-      <entry key="M5" value="17.378291728533707" />
-      <entry key="M10" value="36.848259783172935" />
-      <entry key="M15" value="53.90605427744415" />
-      <entry key="M30" value="89.99212875277605" />
-      <entry key="H1" value="132.31207571497166" />
-      <entry key="H2" value="178.0803287468118" />
-      <entry key="H4" value="217.3685847779441" />
-      <entry key="D1" value="265.8659746532392" />
-      <entry key="W1" value="276.2075260830427" />
+      <entry key="MS100" value="1.0410268363712136" />
+      <entry key="MS500" value="1.6929611062022172" />
+      <entry key="S2" value="3.709828618751015" />
+      <entry key="S5" value="5.8894164513336245" />
+      <entry key="S10" value="7.188000535361779" />
+      <entry key="S30" value="8.620839880860128" />
+      <entry key="S60" value="11.219930894528895" />
+      <entry key="M2" value="17.263269694558893" />
+      <entry key="M5" value="26.556134064070203" />
+      <entry key="M10" value="31.56036543404811" />
+      <entry key="M15" value="33.528888650705" />
+      <entry key="M30" value="35.670294383397376" />
+      <entry key="H1" value="36.84598546187764" />
+      <entry key="H2" value="40.316455548087156" />
+      <entry key="H4" value="65.72535351812583" />
+      <entry key="D1" value="229.70996917333343" />
+      <entry key="W1" value="305.6612689947719" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -143,31 +129,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;add-onesignal&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\user\\Desktop\\Dev\\rhema_erp\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "implement-pwa",
+    "ignore.virus.scanning.warn.message": "true",
+    "javascript.preferred.runtime.type.id": "node",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "C:\\Users\\user\\Desktop\\Dev\\rhema_erp\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\user\Desktop\Dev\rhema_erp\public\oneSignal" />
@@ -191,6 +177,15 @@
       <workItem from="1780157736364" duration="425000" />
       <workItem from="1780158201488" duration="12662000" />
     </task>
+    <task id="LOCAL-00001" summary="added one signal">
+      <option name="closed" value="true" />
+      <created>1780179916148</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1780179916148</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +193,10 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="next.config.ts" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added one signal" />
+    <option name="LAST_COMMIT_MESSAGE" value="added one signal" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
