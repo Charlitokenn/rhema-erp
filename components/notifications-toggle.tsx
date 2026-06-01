@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { useOneSignalContext } from '@/components/providers/onesignal-provider';
 import { useOneSignal } from '@/hooks/use-onesignal';
+import {unsubscribeUser} from "@/lib/actions/unsubscribe.action";
 
 interface NotificationToggleProps {
     className?: string;
@@ -46,11 +47,23 @@ export function NotificationToggle({
         setFeedback(null);
 
         if (isOptedIn) {
-            const result = await unsubscribe();
+            // 1. Delete the subscription server-side by Clerk userId (external_id)
+            const serverResult = await unsubscribeUser();
+
+            if (!serverResult.success) {
+                setFeedback({
+                    kind: 'error',
+                    message: serverResult.error ?? 'Failed to unsubscribe.',
+                });
+                return;
+            }
+
+            // 2. Update local client state so the UI reflects the change immediately
+            const clientResult = await unsubscribe();
             setFeedback(
-                result.success
+                clientResult.success
                     ? { kind: 'success', message: 'Push notifications disabled.' }
-                    : { kind: 'error', message: result.error ?? 'Something went wrong.' },
+                    : { kind: 'error', message: clientResult.error ?? 'Something went wrong.' },
             );
         } else {
             const result = await subscribe();
@@ -60,7 +73,7 @@ export function NotificationToggle({
                     : { kind: 'error', message: result.error ?? 'Something went wrong.' },
             );
         }
-    };
+    }
 
     const statusText =
         permission === 'denied'

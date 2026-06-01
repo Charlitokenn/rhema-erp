@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb7f77d0-be49-4aec-9fcd-bba29a93f5d1" name="Changes" comment="feature: added and implemented">
-      <change afterPath="$PROJECT_DIR$/app/manifest.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/notifications/unsubscribe/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/actions/unsubscribe.action.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/notifications/send/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/notifications/send/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/onesignal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/onesignal.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/notifications-toggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/notifications-toggle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/actions/send-push.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/actions/send-push.action.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/onesignal-server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/onesignal-server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,61 +71,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="2.032883371369727E-16" />
-      <entry key="MS500" value="0.0015396444040477147" />
-      <entry key="S2" value="0.5365127744905811" />
-      <entry key="S5" value="1.7841197857520246" />
-      <entry key="S10" value="2.66972465813228" />
-      <entry key="S30" value="3.4951639209747882" />
-      <entry key="S60" value="3.73929952074426" />
-      <entry key="M2" value="3.9032365823224247" />
-      <entry key="M5" value="4.683788574666331" />
-      <entry key="M10" value="6.5812727069238965" />
-      <entry key="M15" value="8.454742056836489" />
-      <entry key="M30" value="12.772908475281533" />
-      <entry key="H1" value="18.35791246529765" />
-      <entry key="H2" value="33.598196095906964" />
-      <entry key="H4" value="76.88388815626375" />
-      <entry key="D1" value="218.9059621128419" />
-      <entry key="W1" value="268.53885873971507" />
-    </decayedCancelled>
-    <decayedSelected>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
       <entry key="S2" value="1.0" />
       <entry key="S5" value="1.0" />
       <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0000000304365937" />
-      <entry key="S60" value="1.0002467128670778" />
-      <entry key="M2" value="1.0222164616595777" />
-      <entry key="M5" value="1.3404401373070094" />
-      <entry key="M10" value="1.9532935694867506" />
-      <entry key="M15" value="2.437421251688278" />
-      <entry key="M30" value="3.306006532305907" />
-      <entry key="H1" value="4.044769209803803" />
-      <entry key="H2" value="5.181689024040991" />
-      <entry key="H4" value="8.045977408301127" />
-      <entry key="D1" value="17.233369441135086" />
-      <entry key="W1" value="20.3988386058879" />
+      <entry key="S30" value="1.0000000544783045" />
+      <entry key="S60" value="1.0003300367772425" />
+      <entry key="M2" value="1.0256962948832402" />
+      <entry key="M5" value="1.3581582507142878" />
+      <entry key="M10" value="1.9281073292514659" />
+      <entry key="M15" value="2.3713663818920425" />
+      <entry key="M30" value="4.129910496099137" />
+      <entry key="H1" value="9.69765921302575" />
+      <entry key="H2" value="24.005401165982434" />
+      <entry key="H4" value="63.159379998018274" />
+      <entry key="D1" value="217.72210125493143" />
+      <entry key="W1" value="278.1852283444652" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="7.066135182061482E-225" />
+      <entry key="S30" value="1.918936751012732E-75" />
+      <entry key="S60" value="4.381647706232852E-38" />
+      <entry key="M2" value="2.1394790210608144E-19" />
+      <entry key="M5" value="4.5243218109001E-8" />
+      <entry key="M10" value="3.5885628154157717E-4" />
+      <entry key="M15" value="0.007877092552936598" />
+      <entry key="M30" value="0.1879409357281416" />
+      <entry key="H1" value="0.9643897481478284" />
+      <entry key="H2" value="2.530176192007817" />
+      <entry key="H4" value="5.622358296776159" />
+      <entry key="D1" value="16.234047658640947" />
+      <entry key="W1" value="20.22549896383241" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="9.870754361554505E-12" />
-      <entry key="MS500" value="0.007686804716973324" />
-      <entry key="S2" value="0.8044819593593382" />
-      <entry key="S5" value="2.368173728696266" />
-      <entry key="S10" value="3.432112033301386" />
-      <entry key="S30" value="4.408149384385633" />
-      <entry key="S60" value="4.694962380887112" />
-      <entry key="M2" value="4.902303975859654" />
-      <entry key="M5" value="6.010756328831199" />
-      <entry key="M10" value="8.523180481925943" />
-      <entry key="M15" value="10.881903973129052" />
-      <entry key="M30" value="16.07121947660504" />
-      <entry key="H1" value="22.397623787359464" />
-      <entry key="H2" value="38.776184885546286" />
-      <entry key="H4" value="84.9263462608805" />
-      <entry key="D1" value="236.13776121308007" />
-      <entry key="W1" value="288.93742194613907" />
+      <entry key="MS100" value="0.6506709277209668" />
+      <entry key="MS500" value="0.9176398823113651" />
+      <entry key="S2" value="0.9787416503974358" />
+      <entry key="S5" value="0.9914418065903038" />
+      <entry key="S10" value="0.9957117085734725" />
+      <entry key="S30" value="0.9985685752497419" />
+      <entry key="S60" value="0.9996122168080268" />
+      <entry key="M2" value="1.0252668938645635" />
+      <entry key="M5" value="1.3575179735865335" />
+      <entry key="M10" value="1.9273112284132572" />
+      <entry key="M15" value="2.3778211100438025" />
+      <entry key="M30" value="4.316046091950875" />
+      <entry key="H1" value="10.659833547285972" />
+      <entry key="H2" value="26.533141983496943" />
+      <entry key="H4" value="68.77892503297421" />
+      <entry key="D1" value="233.95460407339243" />
+      <entry key="W1" value="298.4104447069255" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -173,7 +168,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "implement-pwa",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "javascript.preferred.runtime.type.id": "node",
     "js.debugger.nextJs.config.created.client": "true",

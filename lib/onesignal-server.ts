@@ -146,6 +146,90 @@ export async function getNotificationStats(
     }
 }
 
+/**
+ * Hard unsubscribe: permanently delete a subscription (device).
+ * The user will stop receiving push notifications on that device.
+ * If they re-open the app, a new subscription may be created automatically.
+ */
+export async function deleteSubscription(subscriptionId: string): Promise<void> {
+    const res = await fetch(
+        `${ONESIGNAL_API_BASE}/subscriptions/${subscriptionId}`,
+        {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Key ${getEnvVar('ONESIGNAL_API_KEY')}`,
+            },
+        },
+    );
+
+    if (!res.ok) {
+        const rawText = await res.text();
+        let errorData: unknown;
+        try { errorData = JSON.parse(rawText); } catch { errorData = rawText; }
+        throw new OneSignalError(
+            `OneSignal unsubscribe error ${res.status}`,
+            res.status,
+            errorData,
+        );
+    }
+}
+
+/**
+ * Soft unsubscribe: disable a subscription without deleting it.
+ * Use this if you want to retain the device record but stop sending notifications.
+ */
+export async function disableSubscription(subscriptionId: string): Promise<void> {
+    const res = await fetch(
+        `${ONESIGNAL_API_BASE}/subscriptions/${subscriptionId}`,
+        {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Key ${getEnvVar('ONESIGNAL_API_KEY')}`,
+            },
+            body: JSON.stringify({ enabled: false }),
+        },
+    );
+
+    if (!res.ok) {
+        const rawText = await res.text();
+        let errorData: unknown;
+        try { errorData = JSON.parse(rawText); } catch { errorData = rawText; }
+        throw new OneSignalError(
+            `OneSignal disable error ${res.status}`,
+            res.status,
+            errorData,
+        );
+    }
+}
+
+/**
+ * Delete a user (and ALL their subscriptions) by external_id.
+ * This is the correct v11 API endpoint.
+ */
+export async function deleteUserByExternalId(externalId: string): Promise<void> {
+    const appId = getEnvVar('ONESIGNAL_APP_ID');
+    const url = `${ONESIGNAL_API_BASE}/apps/${appId}/users/by/external_id/${externalId}`;
+
+    const res = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Key ${getEnvVar('ONESIGNAL_API_KEY')}`,
+        },
+    });
+
+    // 202 = accepted (async deletion), 404 = user not found
+    if (!res.ok && res.status !== 404) {
+        const rawText = await res.text();
+        let errorData: unknown;
+        try { errorData = JSON.parse(rawText); } catch { errorData = rawText; }
+        throw new OneSignalError(
+            `OneSignal delete user error ${res.status}`,
+            res.status,
+            errorData,
+        );
+    }
+}
 // ── Custom error class ────────────────────────────────────────────────────────
 
 export class OneSignalError extends Error {
@@ -158,3 +242,4 @@ export class OneSignalError extends Error {
         this.name = 'OneSignalError';
     }
 }
+
