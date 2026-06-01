@@ -45,7 +45,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         }
 
         const body: SendNotificationRequest = parseResult.data;
-        const result = await sendPushNotification(body); // ← same utility
+        const result = await sendPushNotification(body);
         return NextResponse.json(result);
     } catch (err) {
         if (err instanceof OneSignalError) {

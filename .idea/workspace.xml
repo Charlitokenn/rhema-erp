@@ -4,16 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb7f77d0-be49-4aec-9fcd-bba29a93f5d1" name="Changes" comment="chore: merging commit">
-      <change afterPath="$PROJECT_DIR$/types/globals.d.ts" afterDir="false" />
+    <list default="true" id="cb7f77d0-be49-4aec-9fcd-bba29a93f5d1" name="Changes" comment="feature: added and implemented">
+      <change afterPath="$PROJECT_DIR$/app/manifest.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/notifications/send/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/notifications/send/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/actions/notifications.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/actions/notifications.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/onesignal.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/onesignal.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +52,8 @@
     </selectedModels>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="8" />
+    <option name="cachedIndexableFilesCount" value="45" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -73,61 +76,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000026055150162" />
-      <entry key="S2" value="1.040177508640928" />
-      <entry key="S5" value="1.281649871424833" />
-      <entry key="S10" value="1.6259170392875446" />
-      <entry key="S30" value="2.542827115026422" />
-      <entry key="S60" value="3.1700057845402543" />
-      <entry key="M2" value="3.993259371974385" />
-      <entry key="M5" value="6.294725125987498" />
-      <entry key="M10" value="9.89904880636982" />
-      <entry key="M15" value="14.09940692905267" />
-      <entry key="M30" value="29.857144150080007" />
-      <entry key="H1" value="60.46133972909358" />
-      <entry key="H2" value="103.60298091069718" />
-      <entry key="H4" value="146.53901070094165" />
-      <entry key="D1" value="205.40193193434783" />
-      <entry key="W1" value="218.67555034728605" />
+      <entry key="MS100" value="2.032883371369727E-16" />
+      <entry key="MS500" value="0.0015396444040477147" />
+      <entry key="S2" value="0.5365127744905811" />
+      <entry key="S5" value="1.7841197857520246" />
+      <entry key="S10" value="2.66972465813228" />
+      <entry key="S30" value="3.4951639209747882" />
+      <entry key="S60" value="3.73929952074426" />
+      <entry key="M2" value="3.9032365823224247" />
+      <entry key="M5" value="4.683788574666331" />
+      <entry key="M10" value="6.5812727069238965" />
+      <entry key="M15" value="8.454742056836489" />
+      <entry key="M30" value="12.772908475281533" />
+      <entry key="H1" value="18.35791246529765" />
+      <entry key="H2" value="33.598196095906964" />
+      <entry key="H4" value="76.88388815626375" />
+      <entry key="D1" value="218.9059621128419" />
+      <entry key="W1" value="268.53885873971507" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="2.1031918116572096E-131" />
-      <entry key="MS500" value="7.321134462113018E-27" />
-      <entry key="S2" value="3.0699079959792904E-7" />
-      <entry key="S5" value="0.0031663970176099595" />
-      <entry key="S10" value="0.0763920103993665" />
-      <entry key="S30" value="0.6669891513897872" />
-      <entry key="S60" value="1.1585893255564932" />
-      <entry key="M2" value="1.5896601142729505" />
-      <entry key="M5" value="2.138809493447202" />
-      <entry key="M10" value="2.483782795635826" />
-      <entry key="M15" value="2.6537956770865336" />
-      <entry key="M30" value="3.240125665263997" />
-      <entry key="H1" value="5.130624222095541" />
-      <entry key="H2" value="8.24440919037445" />
-      <entry key="H4" value="11.236329038095837" />
-      <entry key="D1" value="15.04274542517737" />
-      <entry key="W1" value="15.858584730820201" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0000000304365937" />
+      <entry key="S60" value="1.0002467128670778" />
+      <entry key="M2" value="1.0222164616595777" />
+      <entry key="M5" value="1.3404401373070094" />
+      <entry key="M10" value="1.9532935694867506" />
+      <entry key="M15" value="2.437421251688278" />
+      <entry key="M30" value="3.306006532305907" />
+      <entry key="H1" value="4.044769209803803" />
+      <entry key="H2" value="5.181689024040991" />
+      <entry key="H4" value="8.045977408301127" />
+      <entry key="D1" value="17.233369441135086" />
+      <entry key="W1" value="20.3988386058879" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.4370767746429477E-12" />
-      <entry key="MS500" value="0.004281258812761226" />
-      <entry key="S2" value="0.2851555242750271" />
-      <entry key="S5" value="0.8305181107290106" />
-      <entry key="S10" value="1.4142278949416007" />
-      <entry key="S30" value="3.053379195505273" />
-      <entry key="S60" value="4.228101411262626" />
-      <entry key="M2" value="5.520986515605009" />
-      <entry key="M5" value="8.399724604716841" />
-      <entry key="M10" value="12.361202337833014" />
-      <entry key="M15" value="16.73633090497987" />
-      <entry key="M30" value="33.085705559220486" />
-      <entry key="H1" value="65.58267215414219" />
-      <entry key="H2" value="111.83938072822328" />
-      <entry key="H4" value="157.76937975323767" />
-      <entry key="D1" value="220.44319934226954" />
-      <entry key="W1" value="234.53390776960632" />
+      <entry key="MS100" value="9.870754361554505E-12" />
+      <entry key="MS500" value="0.007686804716973324" />
+      <entry key="S2" value="0.8044819593593382" />
+      <entry key="S5" value="2.368173728696266" />
+      <entry key="S10" value="3.432112033301386" />
+      <entry key="S30" value="4.408149384385633" />
+      <entry key="S60" value="4.694962380887112" />
+      <entry key="M2" value="4.902303975859654" />
+      <entry key="M5" value="6.010756328831199" />
+      <entry key="M10" value="8.523180481925943" />
+      <entry key="M15" value="10.881903973129052" />
+      <entry key="M30" value="16.07121947660504" />
+      <entry key="H1" value="22.397623787359464" />
+      <entry key="H2" value="38.776184885546286" />
+      <entry key="H4" value="84.9263462608805" />
+      <entry key="D1" value="236.13776121308007" />
+      <entry key="W1" value="288.93742194613907" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -165,13 +168,16 @@
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "implement-pwa",
     "ignore.virus.scanning.warn.message": "true",
     "javascript.preferred.runtime.type.id": "node",
+    "js.debugger.nextJs.config.created.client": "true",
+    "js.debugger.nextJs.config.created.server": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -187,6 +193,21 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\user\Desktop\Dev\rhema_erp\public\oneSignal" />
     </key>
+  </component>
+  <component name="RunManager" selected="npm.Next.js: server-side">
+    <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
+      <method v="2" />
+    </configuration>
+    <configuration name="Next.js: server-side" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -204,6 +225,7 @@
       <updated>1780157735069</updated>
       <workItem from="1780157736364" duration="425000" />
       <workItem from="1780158201488" duration="12662000" />
+      <workItem from="1780304345463" duration="3111000" />
     </task>
     <task id="LOCAL-00001" summary="chore: merging commit">
       <option name="closed" value="true" />
