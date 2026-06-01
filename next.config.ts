@@ -23,7 +23,7 @@ const withPWA = withPWAInit({
             },
             // Clerk auth endpoints — never cache
             {
-                urlPattern: /^https:\/\/.*\.clerk\.accounts\.dev\/.*/i,
+                urlPattern: /^https:\/\/(.*\.clerk\.accounts\.dev|clerk\..*)\/.*/i,
                 handler: "NetworkOnly",
             },
             // Next.js static assets — cache aggressively
@@ -63,13 +63,6 @@ const withPWA = withPWAInit({
 const nextConfig: NextConfig = {
     async headers() {
         return [
-            {
-                source: "/oneSignal/OneSignalSDKWorker.js",
-                headers: [
-                    { key: "Service-Worker-Allowed", value: "/" },
-                    { key: "Content-Type", value: "text/javascript" },
-                ],
-            },
             {
                 source: "/oneSignal/OneSignalSDKWorker.js",
                 headers: [
