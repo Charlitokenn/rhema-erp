@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useOneSignalContext } from '@/components/providers/onesignal-provider';
 import { useOneSignal } from '@/hooks/use-onesignal';
 import {unsubscribeUser} from "@/lib/actions/unsubscribe.action";
+import {disableSubscription} from "@/lib/onesignal-server";
 
 interface NotificationToggleProps {
     className?: string;
@@ -48,7 +49,7 @@ export function NotificationToggle({
 
         if (isOptedIn) {
             // 1. Delete the subscription server-side by Clerk userId (external_id)
-            const serverResult = await unsubscribeUser();
+            const serverResult = await disableSubscription();
 
             if (!serverResult.success) {
                 setFeedback({

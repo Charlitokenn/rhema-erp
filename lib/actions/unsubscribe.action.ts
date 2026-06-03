@@ -1,7 +1,8 @@
 'use server';
 
 import { auth } from '@clerk/nextjs/server';
-import { deleteUserByExternalId, OneSignalError } from '@/lib/onesignal-server';
+import { deleteUserByExternalId } from '@/lib/onesignal-server';
+import {OneSignalError} from "@/types/onesignal";
 
 interface UnsubscribeResult {
     success: boolean;

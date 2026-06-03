@@ -1,11 +1,18 @@
+"use server";
+
 // src/lib/onesignal-server.ts
 // Pure server-side utility — never import this in client components.
 // No 'use server' here — it's a regular server module.
-import type {
+import {
     SendNotificationRequest,
     SendNotificationResponse,
-    NotificationStats,
+    NotificationStats, OneSignalError,
 } from '@/types/onesignal';
+import {auth} from "@clerk/nextjs/server";
+
+export type DisableSubscriptionResult =
+    | { success: true; disabled: number }
+    | { success: false; error: string };
 
 const ONESIGNAL_API_BASE = 'https://api.onesignal.com';
 
@@ -41,6 +48,9 @@ function buildPayload(req: SendNotificationRequest): Record<string, unknown> {
             return { ...base, included_segments: req.target.names };
         case 'subscription_ids':
             return { ...base, include_subscription_ids: req.target.ids };
+        // ── New: role/tag-based filter targeting ──────────────────────────
+        case 'filters':
+            return { ...base, filters: req.target.filters };
         default:
             throw new Error(`Unsupported target type: ${(req.target as never)}`);
     }
@@ -177,30 +187,114 @@ export async function deleteSubscription(subscriptionId: string): Promise<void> 
 /**
  * Soft unsubscribe: disable a subscription without deleting it.
  * Use this if you want to retain the device record but stop sending notifications.
+ * Disable all OneSignal subscriptions for a given Clerk user.
+ * Looks up the user by external_id, then PATCHes every subscription
+ * to { enabled: false }.
  */
-export async function disableSubscription(subscriptionId: string): Promise<void> {
-    const res = await fetch(
-        `${ONESIGNAL_API_BASE}/subscriptions/${subscriptionId}`,
-        {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Key ${getEnvVar('ONESIGNAL_API_KEY')}`,
-            },
-            body: JSON.stringify({ enabled: false }),
-        },
-    );
+export async function disableSubscription(): Promise<DisableSubscriptionResult> {
+    // ── 1. Resolve caller identity ───────────────────────────────────────────
+    let userId: string | null = null;
+    try {
+        const authResult = await auth();
+        userId = authResult.userId;
+    } catch {
+        return { success: false, error: 'Authentication check failed.' };
+    }
 
-    if (!res.ok) {
-        const rawText = await res.text();
+    if (!userId) {
+        return { success: false, error: 'Unauthorized: no active session.' };
+    }
+
+    const appId = getEnvVar('ONESIGNAL_APP_ID');
+    const apiKey = getEnvVar('ONESIGNAL_API_KEY');
+
+    // ── 2. Resolve user by external_id (Clerk ID) ──────────────────────────
+    let userData: { subscriptions?: Array<{ id: string }> };
+    try {
+        const userRes = await fetch(
+            `${ONESIGNAL_API_BASE}/apps/${appId}/users/by/external_id/${encodeURIComponent(userId)}`,
+            {
+                headers: {
+                    Authorization: `Key ${apiKey}`,
+                },
+            },
+        );
+
+    if (!userRes.ok) {
+        const rawText = await userRes.text();
         let errorData: unknown;
         try { errorData = JSON.parse(rawText); } catch { errorData = rawText; }
-        throw new OneSignalError(
-            `OneSignal disable error ${res.status}`,
-            res.status,
-            errorData,
+        return {
+            success: false,
+            error: `OneSignal user lookup error ${userRes.status}: ${JSON.stringify(errorData)}`,
+        };
+    }
+
+    userData = await userRes.json();
+    } catch (err) {
+        return {
+            success: false,
+            error: `Network error during user lookup: ${err instanceof Error ? err.message : String(err)}`,
+        };
+    }
+
+    const subscriptions = userData.subscriptions ?? [];
+    if (subscriptions.length === 0) {
+        return { success: true, disabled: 0 };
+    }
+
+    // ── 3. Disable every subscription found ──────────────────────────────────
+    let disabled = 0;
+    const failures: string[] = [];
+
+    for (const sub of subscriptions) {
+        try {
+            const res = await fetch(
+                `${ONESIGNAL_API_BASE}/apps/${appId}/subscriptions/${sub.id}`,
+                {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Key ${apiKey}`,
+                    },
+                    body: JSON.stringify({ enabled: false }),
+                },
+            );
+
+            if (!res.ok) {
+                const rawText = await res.text();
+                let errorData: unknown;
+                try { errorData = JSON.parse(rawText); } catch { errorData = rawText; }
+                failures.push(`subscription ${sub.id}: ${JSON.stringify(errorData)}`);
+            } else {
+                disabled++;
+            }
+        } catch (err) {
+            failures.push(
+                `subscription ${sub.id}: ${err instanceof Error ? err.message : String(err)}`,
+            );
+        }
+    }
+
+    // ── 4. Surface partial or total failures ─────────────────────────────────
+    if (disabled === 0 && failures.length > 0) {
+        return {
+            success: false,
+            error: `All ${failures.length} subscription disable attempts failed. ${failures.join('; ')}`,
+        };
+    }
+
+    if (failures.length > 0) {
+        // Partial success: some were disabled, some failed.
+        // Still return success:true so the client knows work was done,
+        // but include the failure details in a console warning server-side.
+        console.warn(
+            '[disableSubscription] partial failure:',
+            { disabled, failed: failures.length, details: failures },
         );
     }
+
+    return { success: true, disabled };
 }
 
 /**
@@ -230,16 +324,3 @@ export async function deleteUserByExternalId(externalId: string): Promise<void> 
         );
     }
 }
-// ── Custom error class ────────────────────────────────────────────────────────
-
-export class OneSignalError extends Error {
-    constructor(
-        message: string,
-        public readonly statusCode: number,
-        public readonly details: unknown,
-    ) {
-        super(message);
-        this.name = 'OneSignalError';
-    }
-}
-

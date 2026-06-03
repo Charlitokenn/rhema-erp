@@ -3,7 +3,7 @@
 import {UserButton, useUser} from "@clerk/nextjs";
 import {NotificationToggle} from "@/components/notifications-toggle";
 import { Button } from "@/components/ui/button";
-import {sendToClerkUser} from "@/lib/actions/send-push.action";
+import {sendRequisitionNotification} from "@/lib/actions/send-push.action";
 
 export default function Home() {
   const { user, isLoaded } = useUser();
@@ -12,10 +12,22 @@ export default function Home() {
     if (!user?.id) return;
 
     try {
-      const res = await sendToClerkUser(user.id);
-      if (!res.ok) {
-        console.error("Failed to send push notification");
+      const res = await sendRequisitionNotification({
+        action: 'submitted',
+        requisitionId: user.id,
+        requisitionTitle: user.id,
+        requestorId: user.id,
+        url: `/api/notifications/`,
+      });
+      if (!res.success) {
+        console.error("Failed to send push notification",res.error);
+      }else{
+        console.log('Push sent successfully:', {
+          dispatched: res.dispatched,
+          failed: res.failed,
+        })
       }
+
     } catch (error) {
       console.error("Error sending push notification:", error);
     }

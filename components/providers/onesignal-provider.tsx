@@ -29,41 +29,52 @@ export function OneSignalProvider({ children }: { children: ReactNode }) {
     const [isInitialized, setIsInitialized] = useState(false);
     const previousUserIdRef = useRef<string | null>(null);
 
-    // ── 1. Initialize OneSignal once on mount ───────────────────────────────
+    // ── 1. Initialise OneSignal once on mount ────────────────────────────
     useEffect(() => {
         initOneSignal()
             .then(() => setIsInitialized(true))
             .catch((err) => console.error('[OneSignal] Init failed:', err));
     }, []);
 
-    // ── 2. Link / unlink the Clerk user whenever auth state changes ─────────
+    // ── 2. Link / tag the Clerk user whenever auth state changes ─────────
     useEffect(() => {
         if (!isInitialized || !isLoaded) return;
 
         if (user) {
-            // Skip if we already logged in this user on this page load
             if (previousUserIdRef.current === user.id) return;
             previousUserIdRef.current = user.id;
 
-            // login() sets the External ID = Clerk userId, linking this device's
-            // push subscription to the authenticated user profile in OneSignal.
             OneSignal.login(user.id)
                 .then(() => {
-                    // Build tags — only send non-identifying segmentation keys
-                    const tags = Object.fromEntries(
-                        Object.entries({
-                            clerk_user_id: user.id,
-                            environment: process.env.NODE_ENV,
-                        }).filter(
+                    // ── Base identity tags ─────────────────────────────
+                    const baseTags: Record<string, string> = {
+                        clerk_user_id: user.id,
+                    };
+
+                    // ── Requisition role tags ──────────────────────────
+                    // publicMetadata.requisitionRole is string[] e.g. ['requestor','reviewer']
+                    // Each role becomes an independent boolean tag so OneSignal
+                    // filters can target "all reviewers", "all approvers", etc.
+                    const roles =
+                        (user.publicMetadata?.requisitionRole as string[] | undefined) ?? [];
+
+                    const roleTags = roles.reduce<Record<string, string>>(
+                        (acc, role) => ({ ...acc, [role]: 'true' }),
+                        {},
+                    );
+
+                    // Merge and strip blank values
+                    const allTags = Object.fromEntries(
+                        Object.entries({ ...baseTags, ...roleTags }).filter(
                             (entry): entry is [string, string] =>
                                 typeof entry[1] === 'string' && entry[1].length > 0,
                         ),
                     );
-                    return OneSignal.User.addTags(tags);
+
+                    return OneSignal.User.addTags(allTags);
                 })
                 .catch((err) => console.error('[OneSignal] Login/tag error:', err));
         } else if (previousUserIdRef.current !== null) {
-            // User signed out — unlink the push subscription from their profile
             previousUserIdRef.current = null;
             OneSignal.logout().catch((err) =>
                 console.error('[OneSignal] Logout error:', err),
